@@ -1,0 +1,247 @@
+<html>
+  <head>
+    <title>Lazy Loading</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100vw;
+        overflow-x: hidden;
+      }
+
+      #detectors {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        z-index: -1;
+        margin-top: calc(100vh + 700px);
+        height: 0;
+      }
+
+      .detector {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+
+      #detectors img,
+      #detectors iframe {
+        width: 10vw;
+      }
+
+      #detector {
+        margin-top: 10%;
+      }
+
+      .test-image {
+        max-height: 100px;
+      }
+
+      .test-image::before {
+        height: 0;
+        display: none;
+      }
+
+      .signal-image {
+        margin-top: 10%;
+      }
+
+      #output-box {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: lightgray;
+        padding: 1rem;
+        z-index: 30;
+        width: 100vw;
+        opacity: 0.7;
+      }
+
+      td {
+        padding: 0.5rem;
+        border: 1px solid black;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .test-block {
+        width: 10vw;
+        height:100px;
+        background-color: rgb(217, 31, 31);
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="/lazy-loading-reset.png" height="100px" />
+
+    <h2>Cidrus Libani</h2>
+    <p>
+      Cedrus libani, the cedar of Lebanon or the Lebanese cedar is a large
+      coniferous tree of the cedrus genus, it is native to the eastern
+      Mediterranean Sea from Lebanon to Turkey. The tree grows to a maximum
+      height of 40m and 10m wide, with a trunk of 2.5m covered in thick, scaly,
+      black, grey-brown bark. When young it is conical in shape but as it
+      matures it becomes flatter on top and more open in structure. The pointed,
+      needle-shaped leaves are glaucous-blue to dark green in colour, 4 sided
+      and about 2.5 cm long. The female cones are a dullish green when young,
+      maturing to brown, 6–10 cm long and barrel-shaped.[1] The Cedar of Lebanon
+      has great landscaping value and is widely planted in park and large
+      gardens.
+    </p>
+
+    <script type="text/javascript">
+      // register the server-like service worker
+
+      if ("serviceWorker" in navigator) {
+        const wasInstalled = navigator.serviceWorker.controller !== null;
+
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(function (registration) {
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope
+            );
+
+            if (!wasInstalled) {
+              //reload
+              window.location.reload();
+            }
+          })
+          .catch(function (err) {
+            console.log("Service Worker registration failed:", err);
+          });
+      } else {
+        alert("Service workers are not supported in this browser.");
+      }
+    </script>
+
+    <div id="detectors">
+      <div class="detector" id="detector-leader">
+        <img src="/lazy-loading-signal/leader.png" loading="lazy" />
+      </div>
+
+      
+      <div class="detector" id="detector-63">
+        <iframe class="test-block publicidades"></iframe>
+
+        <img
+          src="/lazy-loading-signal/63.png"
+          class="signal-image"
+          loading="lazy"
+        />
+      </div>
+       
+      <div class="detector" id="detector-42">
+        <iframe
+          class="test-image"
+          src="https://pt.wisernotify.com/"
+          sandbox="allow-same-origin"
+        ></iframe>
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/42.png"
+          loading="lazy"
+        />
+      </div>
+       
+
+      <div class="detector" id="detector-3">
+        <img
+          src="http://patakaendymal.top/favicon.ico"
+          class="test-image"
+          alt="Random image 3"
+          
+          
+          style="width: 15vw;"
+          
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/3.png"
+          loading="lazy"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-67">
+        <img
+          src="http://bat.bing.com/favicon.ico"
+          class="test-image"
+          alt="Random image 67"
+          
+          
+          style="width: 15vw;"
+          
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/67.png"
+          loading="lazy"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-72">
+        <img
+          src="https://instagram.astv.ru/instalogo.png"
+          class="test-image"
+          alt="Random image 72"
+          
+          
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/72.png"
+          loading="lazy"
+        />
+      </div>
+      
+    </div>
+
+    <main id="output-box">
+      <h1>Your Fingerprint</h1>
+
+      <p id="raw-output"> </p>
+    </main>
+
+    <script>
+      document.addEventListener("scroll", function (event) {
+        console.log("scrolling");
+        fetch("/lazy-loading-fingerprint.json")
+          .then((response) => response.json())
+          .then((data) => {
+            // make a table
+            const table = document.createElement("table");
+            const tbody = document.createElement("tbody");
+            table.appendChild(tbody);
+
+            for (const [key, value] of Object.entries(data)) {
+              const row = document.createElement("tr");
+              const keyCell = document.createElement("td");
+              const valueCell = document.createElement("td");
+
+              keyCell.textContent = key;
+              valueCell.textContent = value;
+
+              row.appendChild(keyCell);
+              row.appendChild(valueCell);
+
+              tbody.appendChild(row);
+            }
+
+            document.getElementById("raw-output").innerHTML = "";
+            document.getElementById("raw-output").appendChild(table);
+          });
+      });
+    </script>
+  </body>
+</html>
