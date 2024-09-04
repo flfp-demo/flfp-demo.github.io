@@ -1,0 +1,1382 @@
+<html>
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="expires" content="-1" />
+    <link rel="stylesheet" href="/static/common.css" />
+    <title>Lazy Loading attack</title>
+    <style>
+
+      :root {
+        --loading-boundary-dist: 1500px;
+        --detector-width: 200px;
+      }
+
+      .detectors {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        z-index: -1;
+        margin-top: calc(100vh + var(--loading-boundary-dist) + var(--chunk-id) * 100px);
+        height: 0;
+        position: absolute;
+        top:0;
+      }
+
+      .detector {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .detectors img,
+      .detectors iframe {
+        width: var(--detector-width);
+      }
+
+      .test-image {
+        max-height: 100px;
+      }
+
+      .test-image::before {
+        height: 0;
+        display: none;
+      }
+
+      .signal-image {
+        # margin-top: 10%;
+        position: relative;
+      }
+
+      .signal-image::after {
+        content:"w";
+        display: block;
+        font-size: 10rem;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        z-index: 10;
+        left: 50%;
+      }
+
+      #output-box {
+        position: fixed;
+        top: 50vh;
+        right: 0;
+        background-color: lightgray;
+        padding: 1rem;
+        z-index: 30;
+        width: 30rem;
+        opacity: 0.7;
+        translate-x: 50%;
+        border: 2px dashed black;
+
+      }
+
+      td {
+        padding: 0.5rem;
+        border: 1px solid black;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .test-block {
+        width: 10vw;
+        height:100px;
+        background-color: rgb(217, 31, 31);
+        display: block;
+      }
+
+      body.stealthy #detectors, body.stealthy #reset-box {
+        opacity:0;
+        event: none;
+      }
+
+      body:not(.stealthy) .only-stealthy {
+        display: none;
+      }
+
+      body.stealthy .only-visible {
+        display: none;
+      }
+
+
+      .keep-scrolling {
+        color: gray;
+        font-weight: bold;
+        font-size: 1.5rem;
+        opacity: 0.5;
+        margin: 300px 0;
+      }
+
+      #output-box{
+        position: fixed;
+        top: 50vh;
+        right: 0;
+        z-index: 30;
+        width: 50vw;
+        opacity: 0.7;
+        transform: translateY(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <script src="/static/stealth-utility.js"></script>
+
+    <a href="/" style="text-align: center; display: block; width: 100vw"
+      >Back to All Attacks</a
+    >
+    <h2 style="text-align: center">Lazy Loading Attack</h2>
+    <h3 class="info only-stealthy" style="background: red">Stealth Mode</h3>
+    <h3 class="info only-visible" style="background: green">Visible Mode</h3>
+    <section>
+      <p>
+        This page is designed to test the lazy loading attack. You can think of
+        this as an average blog site with a scroll component.
+        <b>Scroll down slowly to see the images load.</b>
+      </p>
+      <p>
+        Note that this is just a proof of concept, and many variables can be
+        tweaked to make the attack more effective:
+      </p>
+      <ul>
+        <li>Image size</li>
+        <li>Image count</li>
+        <li>Loading boundary distance</li>
+        <li>The leader batch duration</li>
+      </ul>
+
+      <h2>Attack Pros</h2>
+      <ol>
+        <li
+          >This attack does not require any script. All scripts present in this
+          demo are strictly to help visualize the attack: One script connects a
+          service worker to act like the adversary server, and other scripts
+          helps with visualizing the attack parameters for the viewer.</li
+        >
+        <li
+          >This attack can be stealthy. Click this button to hide/show the
+          attack boxes:
+          <button onclick="toggleStealth()"
+            >Toggle Stealth</button
+          >
+          We make the attack boxes invisible by lowering the opacity and
+          allowing no events to pass through. This way, the attack can be hidden
+          from the user.</li
+        >
+        <li>The resources for the blocked URLs do not necessarily need to exist or load correctly.</li>
+      </ol>
+
+      <h2>Attack Cons</h2>
+      <ol>
+        <li
+          >If the attack parameters are not well-tuned, the attack can be
+          sensitive to the user's scrolling speed. We implement a simple
+          time-window to distinguish between the blocked signals and the
+          unblocked signals. However, more advanced attacks can perform a
+          statistical test on the timings of the image requests to determine in
+          which group they are.</li
+        >
+        <li
+          >Some resources might take some time to load which can slightly shift the signal element up. For this attack to work, the blocked resources should be fast to load. If not, the page should block scrolling until all resources are loaded.</li
+      </ol>
+    </section>
+
+    <section>
+      <p class="keep-scrolling">Keep scrolling to see the images load.</p>
+      <p class="keep-scrolling">Abit more scrolling...</p>
+      <p class="keep-scrolling">Almost there, you can do it...</p>
+    </section>
+
+    <script type="text/javascript">
+      // register the server-like service worker
+
+      if ("serviceWorker" in navigator) {
+        const wasInstalled = navigator.serviceWorker.controller !== null;
+
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(function (registration) {
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope
+            );
+
+            if (!wasInstalled) {
+              //reload
+              window.location.reload();
+            }
+          })
+          .catch(function (err) {
+            console.log("Service Worker registration failed:", err);
+          });
+      } else {
+        alert("Service workers are not supported in this browser.");
+      }
+    </script>
+
+    <div id="detectors">
+    <script src="/reset?adblocker=ublock"></script>
+
+    
+    <div class="detectors" style=" --chunk-id: 0;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/0/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-7">
+        <img
+          src="https://quickdomainfwd.com/favicin.ico"
+          class="test-image"
+          alt="Random image 7"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/0/7.png"
+          loading="lazy"
+          data-debug-id="7"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-8">
+        <img
+          src="https://ratexchange.net/favicin.ico"
+          class="test-image"
+          alt="Random image 8"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/0/8.png"
+          loading="lazy"
+          data-debug-id="8"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-12">
+        <img
+          src="https://webtracking.fe.union-investment.de/favicin.ico"
+          class="test-image"
+          alt="Random image 12"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/0/12.png"
+          loading="lazy"
+          data-debug-id="12"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-16">
+        <img
+          src="https://purebushesprop.com/favicin.ico"
+          class="test-image"
+          alt="Random image 16"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/0/16.png"
+          loading="lazy"
+          data-debug-id="16"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 1;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/1/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-17">
+        <img
+          src="https://javhub.net/img/r18_banner1.jpg"
+          class="test-image"
+          alt="Random image 17"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/1/17.png"
+          loading="lazy"
+          data-debug-id="17"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-21">
+        <img
+          src="https://vungle.com/favicin.ico"
+          class="test-image"
+          alt="Random image 21"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/1/21.png"
+          loading="lazy"
+          data-debug-id="21"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-22">
+        <img
+          src="https://d15cjcet1djbmv.cloudfront.net/favicin.ico"
+          class="test-image"
+          alt="Random image 22"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/1/22.png"
+          loading="lazy"
+          data-debug-id="22"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-53">
+        <img
+          src="https://smartadserver.com/favicin.ico"
+          class="test-image"
+          alt="Random image 53"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/1/53.png"
+          loading="lazy"
+          data-debug-id="53"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 2;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/2/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-79">
+        <img
+          src="https://adfox.ru/favicin.ico"
+          class="test-image"
+          alt="Random image 79"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/2/79.png"
+          loading="lazy"
+          data-debug-id="79"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-80">
+        <img
+          src="https://active-tracking.de/favicin.ico"
+          class="test-image"
+          alt="Random image 80"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/2/80.png"
+          loading="lazy"
+          data-debug-id="80"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-85">
+        <img
+          src="https://pabidding.io/favicin.ico"
+          class="test-image"
+          alt="Random image 85"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/2/85.png"
+          loading="lazy"
+          data-debug-id="85"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-86">
+        <img
+          src="http://addthis.com/favicin.ico"
+          class="test-image"
+          alt="Random image 86"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/2/86.png"
+          loading="lazy"
+          data-debug-id="86"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 3;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/3/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-88">
+        <img
+          src="http://accengage.net/favicin.ico"
+          class="test-image"
+          alt="Random image 88"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/3/88.png"
+          loading="lazy"
+          data-debug-id="88"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-92">
+        <img
+          src="https://adskom.com/favicin.ico"
+          class="test-image"
+          alt="Random image 92"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/3/92.png"
+          loading="lazy"
+          data-debug-id="92"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-94">
+        <img
+          src="https://erate.co.il/favicin.ico"
+          class="test-image"
+          alt="Random image 94"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/3/94.png"
+          loading="lazy"
+          data-debug-id="94"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-97">
+        <img
+          src="https://mas.nth.ch/favicin.ico"
+          class="test-image"
+          alt="Random image 97"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/3/97.png"
+          loading="lazy"
+          data-debug-id="97"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 4;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/4/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-100">
+        <img
+          src="http://fumblingform.com/favicin.ico"
+          class="test-image"
+          alt="Random image 100"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/4/100.png"
+          loading="lazy"
+          data-debug-id="100"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-107">
+        <img
+          src="https://mycookies.it/favicin.ico"
+          class="test-image"
+          alt="Random image 107"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/4/107.png"
+          loading="lazy"
+          data-debug-id="107"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-109">
+        <img
+          src="https://button-follow.zalo.me/favicin.ico"
+          class="test-image"
+          alt="Random image 109"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/4/109.png"
+          loading="lazy"
+          data-debug-id="109"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-117">
+        <img
+          src="https://addtoany.com/favicin.ico"
+          class="test-image"
+          alt="Random image 117"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/4/117.png"
+          loading="lazy"
+          data-debug-id="117"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 5;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/5/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-122">
+        <img
+          src="http://patrospermit.com/favicin.ico"
+          class="test-image"
+          alt="Random image 122"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/5/122.png"
+          loading="lazy"
+          data-debug-id="122"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-125">
+        <img
+          src="https://yanmaga.jp/api/customers/viewer_banners/favicin.ico"
+          class="test-image"
+          alt="Random image 125"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/5/125.png"
+          loading="lazy"
+          data-debug-id="125"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-128">
+        <img
+          src="https://holyclock.com/favicin.ico"
+          class="test-image"
+          alt="Random image 128"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/5/128.png"
+          loading="lazy"
+          data-debug-id="128"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-137">
+        <img
+          src="https://postquare.com/favicin.ico"
+          class="test-image"
+          alt="Random image 137"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/5/137.png"
+          loading="lazy"
+          data-debug-id="137"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 6;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/6/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-144">
+        <img
+          src="https://checke.biz/favicin.ico"
+          class="test-image"
+          alt="Random image 144"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/6/144.png"
+          loading="lazy"
+          data-debug-id="144"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-155">
+        <img
+          src="https://zhengliyqq.com/favicin.ico"
+          class="test-image"
+          alt="Random image 155"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/6/155.png"
+          loading="lazy"
+          data-debug-id="155"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-156">
+        <img
+          src="https://amidicestrins.com/favicin.ico"
+          class="test-image"
+          alt="Random image 156"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/6/156.png"
+          loading="lazy"
+          data-debug-id="156"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-157">
+        <img
+          src="https://sda.online-systemy.cz/favicin.ico"
+          class="test-image"
+          alt="Random image 157"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/6/157.png"
+          loading="lazy"
+          data-debug-id="157"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 7;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/7/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-160">
+        <img
+          src="https://gbucket.ch/favicin.ico"
+          class="test-image"
+          alt="Random image 160"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/7/160.png"
+          loading="lazy"
+          data-debug-id="160"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-168">
+        <img
+          src="https://axiabanners.exodus.gr/favicin.ico"
+          class="test-image"
+          alt="Random image 168"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/7/168.png"
+          loading="lazy"
+          data-debug-id="168"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-170">
+        <img
+          src="https://hr/Portal/Banner?ex=2"
+          class="test-image"
+          alt="Random image 170"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/7/170.png"
+          loading="lazy"
+          data-debug-id="170"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-177">
+        <img
+          src="https://komashisha.com/files/Katib_Media.png"
+          class="test-image"
+          alt="Random image 177"
+          style="padding-bottom: 90px;"
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/7/177.png"
+          loading="lazy"
+          data-debug-id="177"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 8;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/8/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+         
+
+      <div class="detector" id="detector-184">
+        <img
+          src="https://widget.getyourguide.com/favicin.ico"
+          class="test-image"
+          alt="Random image 184"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/8/184.png"
+          loading="lazy"
+          data-debug-id="184"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-189">
+        <img
+          src="https://sure.lv/favicin.ico"
+          class="test-image"
+          alt="Random image 189"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/8/189.png"
+          loading="lazy"
+          data-debug-id="189"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-191">
+        <img
+          src="https://a.kajgana.mk/favicin.ico"
+          class="test-image"
+          alt="Random image 191"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/8/191.png"
+          loading="lazy"
+          data-debug-id="191"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-192">
+        <img
+          src="https://content2.kieskeurig.nl/favicin.ico"
+          class="test-image"
+          alt="Random image 192"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/8/192.png"
+          loading="lazy"
+          data-debug-id="192"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 9;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/9/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+      
+      <div class="detector" id="detector-0">
+        <div
+          class="test-block aff-inner-col"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/9/0.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="0"
+        />
+      </div>
+         
+
+      <div class="detector" id="detector-193">
+        <img
+          src="https://kunde.apt.no/favicin.ico"
+          class="test-image"
+          alt="Random image 193"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/9/193.png"
+          loading="lazy"
+          data-debug-id="193"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-199">
+        <img
+          src="https://newsbucuresti.ro/1romedica.jpg"
+          class="test-image"
+          alt="Random image 199"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/9/199.png"
+          loading="lazy"
+          data-debug-id="199"
+        />
+      </div>
+      
+
+      <div class="detector" id="detector-210">
+        <img
+          src="https://reklam1.akhisar.bel.tr/favicin.ico"
+          class="test-image"
+          alt="Random image 210"
+          style=""
+          height="100px"
+        />
+        <img
+          class="signal-image"
+          src="/lazy-loading-signal/9/210.png"
+          loading="lazy"
+          data-debug-id="210"
+        />
+      </div>
+      
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 10;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/10/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+      
+      <div class="detector" id="detector-111">
+        <div
+          class="test-block shareaholic-canvas"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/10/111.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="111"
+        />
+      </div>
+      
+      <div class="detector" id="detector-116">
+        <div
+          class="test-block util-bar-module-firefly-visible"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/10/116.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="116"
+        />
+      </div>
+      
+      <div class="detector" id="detector-129">
+        <div
+          class="test-block ck-sp-app-wrapper"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/10/129.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="129"
+        />
+      </div>
+      
+      <div class="detector" id="detector-133">
+        <div
+          class="test-block td-more-articles-box"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/10/133.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="133"
+        />
+      </div>
+         
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 11;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/11/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+      
+      <div class="detector" id="detector-146">
+        <div
+          class="test-block adblock-whitelist-messaging__wrapper"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/11/146.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="146"
+        />
+      </div>
+      
+      <div class="detector" id="detector-173">
+        <div
+          class="test-block frame_iklan_baris"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/11/173.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="173"
+        />
+      </div>
+      
+      <div class="detector" id="detector-182">
+        <div
+          class="test-block boxAdv"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/11/182.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="182"
+        />
+      </div>
+      
+      <div class="detector" id="detector-186">
+        <div
+          class="test-block reklamos_nuorodos"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/11/186.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="186"
+        />
+      </div>
+         
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 12;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/12/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+      
+      <div class="detector" id="detector-204">
+        <div
+          class="test-block PublicidadArriba"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/12/204.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="204"
+        />
+      </div>
+      
+      <div class="detector" id="detector-208">
+        <div
+          class="test-block strossle-below-article-thumbnails"
+          style=""
+        >detector</div>
+
+        <img
+          src="/lazy-loading-signal/12/208.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="208"
+        />
+      </div>
+       
+      <div class="detector" id="detector-101">
+        <div
+          class="test-block"
+          id="bann-cook"
+          style=""
+        >
+        detector
+      </div>
+        <img
+          src="/lazy-loading-signal/12/101.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="101"
+        />
+      </div>
+      
+      <div class="detector" id="detector-102">
+        <div
+          class="test-block"
+          id="eu-cookies-consent"
+          style=""
+        >
+        detector
+      </div>
+        <img
+          src="/lazy-loading-signal/12/102.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="102"
+        />
+      </div>
+        
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 13;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/13/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+       
+      <div class="detector" id="detector-131">
+        <div
+          class="test-block"
+          id="onesignal-bell-container"
+          style=""
+        >
+        detector
+      </div>
+        <img
+          src="/lazy-loading-signal/13/131.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="131"
+        />
+      </div>
+      
+      <div class="detector" id="detector-142">
+        <div
+          class="test-block"
+          id="SubscribePushNotificationPanel"
+          style=""
+        >
+        detector
+      </div>
+        <img
+          src="/lazy-loading-signal/13/142.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="142"
+        />
+      </div>
+      
+      <div class="detector" id="detector-151">
+        <div
+          class="test-block"
+          id="zwaar_float_ad_area"
+          style=""
+        >
+        detector
+      </div>
+        <img
+          src="/lazy-loading-signal/13/151.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="151"
+        />
+      </div>
+      
+      <div class="detector" id="detector-153">
+        <div
+          class="test-block"
+          id="admixer_"
+          style=""
+        >
+        detector
+      </div>
+        <img
+          src="/lazy-loading-signal/13/153.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="153"
+        />
+      </div>
+        
+    </div>
+    
+    <div class="detectors" style=" --chunk-id: 14;">
+      <div class="detector" id="detector-leader">
+        <img
+          src="/lazy-loading-signal/14/leader.png"
+          loading="lazy"
+        />
+      </div>
+
+       
+      <div class="detector" id="detector-158">
+        <div
+          class="test-block"
+          id="ad_gross"
+          style=""
+        >
+        detector
+      </div>
+        <img
+          src="/lazy-loading-signal/14/158.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="158"
+        />
+      </div>
+      
+      <div class="detector" id="detector-178">
+        <div
+          class="test-block"
+          id="kaprila_linktable"
+          style=""
+        >
+        detector
+      </div>
+        <img
+          src="/lazy-loading-signal/14/178.png"
+          class="signal-image"
+          loading="lazy"
+          data-debug-id="178"
+        />
+      </div>
+        
+    </div>
+    
+    </div>
+
+    <main id="output-box">
+      <h1>Your Fingerprint Output</h1>
+      <p id="raw-output">Waiting for scroll...</p>
+    </main>
+
+    <footer>
+      Anonymous. to be filled with author information after the paper is
+      reviewed.
+    </footer>
+
+    <script>
+      // for demonstration purposes, to show the fingerprint
+
+      document.addEventListener("scroll", function (event) {
+        console.log("scrolling");
+        fetch("/lazy-loading-fingerprint.json")
+          .then((response) => response.json())
+          .then((data) => {
+            // make a table
+            const table = document.createElement("table");
+            const tbody = document.createElement("tbody");
+            table.appendChild(tbody);
+
+            for (const [key, value] of Object.entries(data)) {
+              const row = document.createElement("tr");
+              const keyCell = document.createElement("td");
+              const valueCell = document.createElement("td");
+
+              keyCell.textContent = key;
+              valueCell.textContent = value;
+
+              row.appendChild(keyCell);
+              row.appendChild(valueCell);
+
+              tbody.appendChild(row);
+            }
+
+            document.getElementById("raw-output").innerHTML = "";
+            document.getElementById("raw-output").appendChild(table);
+          });
+      });
+    </script>
+  </body>
+</html>

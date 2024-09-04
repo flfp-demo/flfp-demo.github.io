@@ -1,0 +1,541 @@
+{
+    "image-alt": {
+        "generic-network": []
+    },
+    "container-query": {
+        "generic-cosmetic": [
+            
+        ]
+    },
+    "lazy-image-and-animation": {
+        "generic-network": [
+            {
+                "id": 42,
+                "url": "https://pt.wisernotify.com/",
+                "resource": "iframe",
+                "info": {
+                    "Tracking Protection filter": true,
+                    "Annoyances filter": true,
+                    "Popups": true,
+                    "DNS filter": true
+                }
+            },
+            {
+                "id": 63,
+                "url": "https://framework.service.tcloudbase.com/access?",
+                "resource": "iframe",
+                "info": {
+                    "Tracking Protection filter": true,
+                    "Spanish/Portuguese filter": true
+                }
+            },
+            {
+                "id": 67,
+                "url": "https://bat.bing.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Tracking Protection filter": true,
+                    "ROList": true
+                },
+                "lazy_loading": {
+                    "space": 15
+                }
+            },
+            {
+                "id": 89,
+                "url": "/wp-content/plugins/right-click-disable-orignal/",
+                "resource": "image",
+                "info": {
+                    "Other Annoyances": true,
+                    "Annoyances filter": true,
+                    "AdBlockID": true
+                }
+            },
+            {
+                "id": 102,
+                "url": "https://ww25.talktomeplease.biz/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Ukrainian filter": true,
+                    "Russian filter": true,
+                    "French filter": true,
+                    "DNS filter": true,
+                    "Liste FR": true
+                }
+            },
+            {
+                "id": 107,
+                "url": "https://relap.mail.ru/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Russian filter": true,
+                    "DNS filter": true
+                }
+            },
+            {
+                "id": 108,
+                "url": "http://ww38.f.xyu.tv/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Russian filter": true
+                }
+            },
+            {
+                "id": 112,
+                "url": "https://www.ikjnbvf.de/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "German filter": true,
+                    "DNS filter": true
+                }
+            },
+            {
+                "id": 132,
+                "url": "https://navdmp.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Spanish/Portuguese filter": true,
+                    "DNS filter": true
+                }
+            },
+            {
+                "id": 134,
+                "url": "https://smrtbnr.info/webcontents/Blog-Banner-FB-4-16105269950.jpg",
+                "resource": "image",
+                "info": {
+                    "Turkish filter": true,
+                    "DNS filter": true
+                }
+            },
+            {
+                "id": 147,
+                "url": "https://etop.ro/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "ROList": true,
+                    "DNS filter": true
+                }
+            },
+            {
+                "id": 148,
+                "url": "https://w.sharethis.com/",
+                "resource": "iframe",
+                "info": {
+                    "ROLIST2": true,
+                    "DNS filter": true
+                }
+            },
+            {
+                "id": 149,
+                "url": "https://adsimg.kompas.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "AdBlockID": true,
+                    "DNS filter": true
+                }
+            },
+            {
+                "id": 333,
+                "url": "https://ceritaharian.com/wp-content/uploads/2023/08/icon-2.png",
+                "resource": "image",
+                "info": {
+                    "EasyList Thailand": true
+                }
+            },
+            {
+                "id": 334,
+                "url": "https://sumome.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "EasyList Thailand": true,
+                    "Web Annoyances Ultralist": true
+                }
+            },
+            {
+                "id": 338,
+                "url": "https://180hits.de/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Peter Lowe's Blocklist": true
+                }
+            },
+            {
+                "id": 339,
+                "url": "https://ww16.layer-ads.de/favicon,ico",
+                "resource": "image",
+                "info": {
+                    "Peter Lowe's Blocklist": true,
+                    "Xfiles": true
+                }
+            },
+            {
+                "id": 341,
+                "url": "http://adexc.net/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Peter Lowe's Blocklist": true,
+                    "road-block light": true
+                }
+            },
+            {
+                "id": 342,
+                "url": "http://adext.inkclub.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Peter Lowe's Blocklist": true,
+                    "Dandelion Sprout's Nordic Filters": true
+                }
+            },
+            {
+                "id": 344,
+                "url": "https://ads.yahoo.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "YousList": true,
+                    "Peter Lowe's Blocklist": true,
+                    "Xfiles": true
+                }
+            },
+            {
+                "id": 347,
+                "url": "https://clickyab.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Peter Lowe's Blocklist": true,
+                    "Persian Blocker": true
+                }
+            },
+            {
+                "id": 349,
+                "url": "https://visualrevenue.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Official Polish filters for AdBlock, uBlock Origin & AdGuard": true,
+                    "Peter Lowe's Blocklist": true
+                }
+            },
+            {
+                "id": 351,
+                "url": "https://hotjar.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "ADgk Mobile China list": true,
+                    "road-block light": true,
+                    "Peter Lowe's Blocklist": true
+                }
+            },
+            {
+                "id": 352,
+                "url": "https://liveadexchanger.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Peter Lowe's Blocklist": true,
+                    "Xfiles": true,
+                    "ADgk Mobile China list": true
+                }
+            },
+            {
+                "id": 354,
+                "url": "https://mgid.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "ADgk Mobile China list": true,
+                    "Macedonian adBlock Filters": true,
+                    "Peter Lowe's Blocklist": true,
+                    "Xfiles": true
+                }
+            },
+            {
+                "id": 355,
+                "url": "https://r.msn.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Peter Lowe's Blocklist": true,
+                    "RU AdList: Counters": true,
+                    "Tracking Protection filter": true
+                }
+            },
+            {
+                "id": 357,
+                "url": "https://bdv.bidvertiser.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "YousList": true,
+                    "Xfiles": true
+                }
+            },
+            {
+                "id": 365,
+                "url": "https://ok.mail.ru/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "RU AdList: Counters": true
+                }
+            },
+            {
+                "id": 389,
+                "url": "https://fonts.bauernet.me/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Fanboy's Anti-thirdparty Fonts": true
+                }
+            },
+            {
+                "id": 404,
+                "url": "https://clikueo.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "Web Annoyances Ultralist": true
+                }
+            },
+            {
+                "id": 405,
+                "url": "https://hapying.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "ADgk Mobile China list": true
+                }
+            }
+        ],
+        "generic-cosmetic": [
+            {
+                "id": 72,
+                "by": "class",
+                "class": "btn-share",
+                "info": {
+                    "Social Media filter": true
+                }
+            },
+            {
+                "id": 77,
+                "by": "class",
+                "class": "privacy-warning",
+                "info": {
+                    "Annoyances filter": true,
+                    "Cookie Notices": true
+                }
+            },
+            {
+                "id": 86,
+                "by": "class",
+                "class": "smartbanner--ios",
+                "info": {
+                    "Annoyances filter": true,
+                    "Mobile App Banners": true
+                }
+            },
+            {
+                "id": 90,
+                "by": "class",
+                "class": "plugin-rss",
+                "info": {
+                    "Annoyances filter": true,
+                    "Widgets": true
+                }
+            },
+            {
+                "id": 95,
+                "by": "class",
+                "class": "ads_ban",
+                "info": {
+                    "Ukrainian filter": true,
+                    "Russian filter": true,
+                    "French filter": true,
+                    "Liste FR": true
+                }
+            },
+            {
+                "id": 97,
+                "by": "id",
+                "_id": "PopWin",
+                "info": {
+                    "Ukrainian filter": true,
+                    "Russian filter": true,
+                    "Turkish filter": true
+                }
+            },
+            {
+                "id": 98,
+                "by": "id",
+                "_id": "ad4",
+                "info": {
+                    "Ukrainian filter": true,
+                    "Russian filter": true,
+                    "French filter": true,
+                    "Spanish/Portuguese filter": true,
+                    "Liste FR": true
+                }
+            },
+            {
+                "id": 114,
+                "by": "id",
+                "_id": "werbeblock",
+                "info": {
+                    "German filter": true,
+                    "French filter": true,
+                    "Liste FR": true
+                }
+            },
+            {
+                "id": 119,
+                "by": "class",
+                "class": "header-adds",
+                "info": {
+                    "French filter": true,
+                    "AdBlockID": true,
+                    "Liste FR": true
+                }
+            },
+            {
+                "id": 122,
+                "by": "class",
+                "class": "pubContainer",
+                "info": {
+                    "French filter": true,
+                    "Spanish/Portuguese filter": true,
+                    "Liste FR": true
+                }
+            },
+            {
+                "id": 123,
+                "by": "class",
+                "class": "reklam728x90",
+                "info": {
+                    "Turkish filter": true,
+                    "French filter": true,
+                    "Liste FR": true
+                }
+            },
+            {
+                "id": 140,
+                "by": "class",
+                "class": "davwheat-ad",
+                "info": {
+                    "Chinese filter": true,
+                    "AdBlockID": true
+                }
+            },
+            {
+                "id": 144,
+                "by": "class",
+                "class": "amp_ad",
+                "info": {
+                    "Mobile ads filter": true
+                }
+            },
+            {
+                "id": 145,
+                "by": "class",
+                "class": "header-ad-mobile",
+                "info": {
+                    "Mobile ads filter": true,
+                    "AdBlockID": true
+                }
+            },
+            {
+                "id": 165,
+                "by": "class",
+                "class": "groei-ad",
+                "info": {
+                    "EasyList Dutch": true,
+                    "EasyList": true
+                }
+            },
+            {
+                "id": 223,
+                "by": "class",
+                "class": "tipps-content-ad",
+                "info": {
+                    "Liste FR": true,
+                    "EasyList Germany": true,
+                    "German filter": true
+                }
+            },
+            {
+                "id": 244,
+                "by": "class",
+                "class": "top_reklama",
+                "info": {
+                    "EasyList Lithuania": true,
+                    "Liste FR": true
+                }
+            },
+            {
+                "id": 259,
+                "by": "id",
+                "_id": "crocopush_banner",
+                "info": {
+                    "Fanboy's Annoyances": true,
+                    "Liste FR": true,
+                    "Fanboy's Enhanced Tracking List": true
+                }
+            },
+            {
+                "id": 331,
+                "by": "class",
+                "class": "bloco-publicidade",
+                "info": {
+                    "EasyList Portuguese": true
+                }
+            },
+            {
+                "id": 332,
+                "by": "class",
+                "class": "vip-section-advertising",
+                "info": {
+                    "EasyList Portuguese": true,
+                    "EasyList Spanish": true
+                }
+            },
+            {
+                "id": 356,
+                "by": "id",
+                "_id": "zzsliderlayer_tc_box",
+                "info": {
+                    "Xfiles": true
+                }
+            },
+            {
+                "id": 360,
+                "by": "id",
+                "_id": "gdpr-consent-tool-wrapper",
+                "info": {
+                    "I don't care about cookies": true,
+                    "Xfiles": true
+                }
+            },
+            {
+                "id": 366,
+                "by": "class",
+                "class": "banner-bottom",
+                "info": {
+                    "ABPVN List": true
+                }
+            },
+            {
+                "id": 383,
+                "by": "class",
+                "class": "keskimainos",
+                "info": {
+                    "Adblock List for Finland": true
+                }
+            },
+            {
+                "id": 388,
+                "by": "class",
+                "class": "ban-69 row ban",
+                "info": {
+                    "Polish Anti Adblock Filters": true
+                }
+            },
+            {
+                "id": 399,
+                "by": "id",
+                "_id": "no-familieklubben-wde-front_topboard",
+                "info": {
+                    "Dandelion Sprout's Nordic Filters": true
+                }
+            }
+        ]
+    }
+}

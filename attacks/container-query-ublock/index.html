@@ -1,0 +1,2143 @@
+<html>
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="expires" content="-1" />
+    <link rel="stylesheet" href="/static/common.css" />
+    <title>@container Query Attack (ublock)</title>
+    <style>
+
+
+      .group {
+        display: flex;
+        justify-content: stretch;
+        max-width:200px;
+      }
+
+      .witness {
+        width: 100%;
+        flex-grow: 1;
+      }
+
+      .witness-img {
+        max-width: fit-content;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .child {
+        height: 1rem;
+        width: max-content;
+      }
+
+      
+
+      .container[data-id="0"] {
+        container: c0 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c0 (100px < width) {
+        .child {
+          background:  url("/signal/0.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="111"] {
+        container: c111 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c111 (100px < width) {
+        .child {
+          background:  url("/signal/111.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="116"] {
+        container: c116 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c116 (100px < width) {
+        .child {
+          background:  url("/signal/116.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="129"] {
+        container: c129 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c129 (100px < width) {
+        .child {
+          background:  url("/signal/129.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="133"] {
+        container: c133 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c133 (100px < width) {
+        .child {
+          background:  url("/signal/133.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="146"] {
+        container: c146 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c146 (100px < width) {
+        .child {
+          background:  url("/signal/146.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="173"] {
+        container: c173 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c173 (100px < width) {
+        .child {
+          background:  url("/signal/173.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="182"] {
+        container: c182 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c182 (100px < width) {
+        .child {
+          background:  url("/signal/182.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="186"] {
+        container: c186 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c186 (100px < width) {
+        .child {
+          background:  url("/signal/186.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="204"] {
+        container: c204 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c204 (100px < width) {
+        .child {
+          background:  url("/signal/204.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      .container[data-id="208"] {
+        container: c208 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c208 (100px < width) {
+        .child {
+          background:  url("/signal/208.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+      }
+
+      
+
+      
+      .container[data-id="101"] {
+        container: c101 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c101 (100px < width) {
+        .child {
+          background-image: url("/signal/101.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="102"] {
+        container: c102 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c102 (100px < width) {
+        .child {
+          background-image: url("/signal/102.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="131"] {
+        container: c131 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c131 (100px < width) {
+        .child {
+          background-image: url("/signal/131.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="142"] {
+        container: c142 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c142 (100px < width) {
+        .child {
+          background-image: url("/signal/142.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="151"] {
+        container: c151 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c151 (100px < width) {
+        .child {
+          background-image: url("/signal/151.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="153"] {
+        container: c153 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c153 (100px < width) {
+        .child {
+          background-image: url("/signal/153.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="158"] {
+        container: c158 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c158 (100px < width) {
+        .child {
+          background-image: url("/signal/158.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="178"] {
+        container: c178 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c178 (100px < width) {
+        .child {
+          background-image: url("/signal/178.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+
+
+      
+      .container[data-id="7"] {
+        container: c7 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c7 (100px < width) {
+        .child {
+          background-image: url("/signal/7.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="8"] {
+        container: c8 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c8 (100px < width) {
+        .child {
+          background-image: url("/signal/8.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="12"] {
+        container: c12 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c12 (100px < width) {
+        .child {
+          background-image: url("/signal/12.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="16"] {
+        container: c16 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c16 (100px < width) {
+        .child {
+          background-image: url("/signal/16.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="17"] {
+        container: c17 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c17 (100px < width) {
+        .child {
+          background-image: url("/signal/17.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="21"] {
+        container: c21 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c21 (100px < width) {
+        .child {
+          background-image: url("/signal/21.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="22"] {
+        container: c22 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c22 (100px < width) {
+        .child {
+          background-image: url("/signal/22.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="53"] {
+        container: c53 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c53 (100px < width) {
+        .child {
+          background-image: url("/signal/53.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="79"] {
+        container: c79 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c79 (100px < width) {
+        .child {
+          background-image: url("/signal/79.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="80"] {
+        container: c80 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c80 (100px < width) {
+        .child {
+          background-image: url("/signal/80.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="85"] {
+        container: c85 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c85 (100px < width) {
+        .child {
+          background-image: url("/signal/85.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="86"] {
+        container: c86 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c86 (100px < width) {
+        .child {
+          background-image: url("/signal/86.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="88"] {
+        container: c88 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c88 (100px < width) {
+        .child {
+          background-image: url("/signal/88.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="92"] {
+        container: c92 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c92 (100px < width) {
+        .child {
+          background-image: url("/signal/92.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="94"] {
+        container: c94 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c94 (100px < width) {
+        .child {
+          background-image: url("/signal/94.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="97"] {
+        container: c97 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c97 (100px < width) {
+        .child {
+          background-image: url("/signal/97.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="100"] {
+        container: c100 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c100 (100px < width) {
+        .child {
+          background-image: url("/signal/100.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="107"] {
+        container: c107 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c107 (100px < width) {
+        .child {
+          background-image: url("/signal/107.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="109"] {
+        container: c109 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c109 (100px < width) {
+        .child {
+          background-image: url("/signal/109.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="117"] {
+        container: c117 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c117 (100px < width) {
+        .child {
+          background-image: url("/signal/117.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="122"] {
+        container: c122 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c122 (100px < width) {
+        .child {
+          background-image: url("/signal/122.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="125"] {
+        container: c125 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c125 (100px < width) {
+        .child {
+          background-image: url("/signal/125.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="128"] {
+        container: c128 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c128 (100px < width) {
+        .child {
+          background-image: url("/signal/128.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="137"] {
+        container: c137 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c137 (100px < width) {
+        .child {
+          background-image: url("/signal/137.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="144"] {
+        container: c144 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c144 (100px < width) {
+        .child {
+          background-image: url("/signal/144.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="155"] {
+        container: c155 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c155 (100px < width) {
+        .child {
+          background-image: url("/signal/155.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="156"] {
+        container: c156 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c156 (100px < width) {
+        .child {
+          background-image: url("/signal/156.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="157"] {
+        container: c157 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c157 (100px < width) {
+        .child {
+          background-image: url("/signal/157.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="160"] {
+        container: c160 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c160 (100px < width) {
+        .child {
+          background-image: url("/signal/160.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="168"] {
+        container: c168 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c168 (100px < width) {
+        .child {
+          background-image: url("/signal/168.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="170"] {
+        container: c170 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c170 (100px < width) {
+        .child {
+          background-image: url("/signal/170.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="177"] {
+        container: c177 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c177 (100px < width) {
+        .child {
+          background-image: url("/signal/177.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="184"] {
+        container: c184 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c184 (100px < width) {
+        .child {
+          background-image: url("/signal/184.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="189"] {
+        container: c189 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c189 (100px < width) {
+        .child {
+          background-image: url("/signal/189.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="191"] {
+        container: c191 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c191 (100px < width) {
+        .child {
+          background-image: url("/signal/191.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="192"] {
+        container: c192 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c192 (100px < width) {
+        .child {
+          background-image: url("/signal/192.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="193"] {
+        container: c193 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c193 (100px < width) {
+        .child {
+          background-image: url("/signal/193.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="199"] {
+        container: c199 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c199 (100px < width) {
+        .child {
+          background-image: url("/signal/199.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+      .container[data-id="210"] {
+        container: c210 / inline-size;
+        display: block;
+        width: 100%;
+      }
+
+      @container c210 (100px < width) {
+        .child {
+          background-image: url("/signal/210.png");
+          color: red;
+        }
+
+        .child::before {
+          content: "Blocked ";
+        }
+
+      }
+      
+
+      
+
+    </style>
+  </head>
+  <body>
+    <script src="/static/stealth-utility.js"></script>
+    <a href="/" style="text-align: center; display: block; width: 100vw"
+      >Back to All Attacks</a
+    >
+    <h2 style="text-align: center"
+      ><pre>@container</pre> Query Attack (ublock)</h2
+    >
+    <h3 class="info only-stealthy" style="background: red">Stealth Mode</h3>
+    <h3 class="info only-visible" style="background: green">Visible Mode</h3>
+    <section>
+      <main id="output-box">
+        <h1>Your Fingerprint Output</h1>
+        <p id="raw-output">Collecting...</p>
+      </main>
+
+      <p>
+        This page is designed to test the <pre>@container</pre> query attack. The attack
+        sends signals if the size of the container is less than 100px. This only happens when the element in the container is blocked.
+      </p>
+
+      <p>
+       
+      <h2>Attack Pros</h2>
+      <ol>
+        <li
+          >This attack does not require any script. All scripts present in this
+          demo are strictly to help visualize the attack: One script connects a
+          service worker to act like the adversary server, and other scripts
+          helps with visualizing the attack parameters for the viewer.</li
+        >
+        <li
+          >This attack can be stealthy. At this moment, even while not trying to
+          hide the images, many images we load are originally single pixels and
+          don't show up. Click this button to hide/show the attack boxes:
+          <button onclick="toggleStealth()"
+            >Toggle Stealth</button
+          >
+          We make the attack boxes invisible by reducing the height to 0 and
+          allowing no events to pass through. This way, the attack can be hidden
+          from the user.</li
+        >
+        <li><b>The attack works even if JavaScript is disabled.</b></li>
+        <li>The attack is fast and does not require user interaction</li>
+        <li>The attack is instantenaous</li>
+        <li>The attack only sends network requests if the element is blocked</li>
+        <li>The attack works correctly even if the unblocked URL does not exist. </li>
+      </ol>
+
+      <h2>Attack Cons</h2>
+      <ol>
+        <li>The attack is restricted to generic network rules.</li>
+        <li
+          >The fattack does not work on chromium because of non-standard ways of
+          styling the alt attribute.</li
+        >
+      </ol>
+    </section>
+
+    <script type="text/javascript">
+      // register the server-like service worker
+
+      if ("serviceWorker" in navigator) {
+        const wasInstalled = navigator.serviceWorker.controller !== null;
+
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(function (registration) {
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope
+            );
+
+            if (!wasInstalled) {
+              //reload
+              window.location.reload();
+            }
+          })
+          .catch(function (err) {
+            console.log("Service Worker registration failed:", err);
+          });
+      } else {
+        alert("Service workers are not supported in this browser.");
+      }
+    </script>
+
+    <div id="detectors">
+      <script src="/reset?adblocker=ublock"></script>
+
+      
+      <div class="group">
+        <div class="witness aff-inner-col">unblocked</div>
+        <div class="container" data-id="0">
+          <div class="child" data-id="0"
+            >Class rule 0: ".aff-inner-col"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness shareaholic-canvas">unblocked</div>
+        <div class="container" data-id="111">
+          <div class="child" data-id="111"
+            >Class rule 111: ".shareaholic-canvas"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness util-bar-module-firefly-visible">unblocked</div>
+        <div class="container" data-id="116">
+          <div class="child" data-id="116"
+            >Class rule 116: ".util-bar-module-firefly-visible"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness ck-sp-app-wrapper">unblocked</div>
+        <div class="container" data-id="129">
+          <div class="child" data-id="129"
+            >Class rule 129: ".ck-sp-app-wrapper"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness td-more-articles-box">unblocked</div>
+        <div class="container" data-id="133">
+          <div class="child" data-id="133"
+            >Class rule 133: ".td-more-articles-box"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness adblock-whitelist-messaging__wrapper">unblocked</div>
+        <div class="container" data-id="146">
+          <div class="child" data-id="146"
+            >Class rule 146: ".adblock-whitelist-messaging__wrapper"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness frame_iklan_baris">unblocked</div>
+        <div class="container" data-id="173">
+          <div class="child" data-id="173"
+            >Class rule 173: ".frame_iklan_baris"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness boxAdv">unblocked</div>
+        <div class="container" data-id="182">
+          <div class="child" data-id="182"
+            >Class rule 182: ".boxAdv"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness reklamos_nuorodos">unblocked</div>
+        <div class="container" data-id="186">
+          <div class="child" data-id="186"
+            >Class rule 186: ".reklamos_nuorodos"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness PublicidadArriba">unblocked</div>
+        <div class="container" data-id="204">
+          <div class="child" data-id="204"
+            >Class rule 204: ".PublicidadArriba"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness strossle-below-article-thumbnails">unblocked</div>
+        <div class="container" data-id="208">
+          <div class="child" data-id="208"
+            >Class rule 208: ".strossle-below-article-thumbnails"</div
+          >
+        </div>
+      </div>
+       
+      <div class="group">
+        <div class="witness" id="bann-cook">unblocked</div>
+        <div class="container" data-id="101">
+          <div class="child" data-id="101"
+            >ID rule 101: "#bann-cook"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness" id="eu-cookies-consent">unblocked</div>
+        <div class="container" data-id="102">
+          <div class="child" data-id="102"
+            >ID rule 102: "#eu-cookies-consent"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness" id="onesignal-bell-container">unblocked</div>
+        <div class="container" data-id="131">
+          <div class="child" data-id="131"
+            >ID rule 131: "#onesignal-bell-container"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness" id="SubscribePushNotificationPanel">unblocked</div>
+        <div class="container" data-id="142">
+          <div class="child" data-id="142"
+            >ID rule 142: "#SubscribePushNotificationPanel"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness" id="zwaar_float_ad_area">unblocked</div>
+        <div class="container" data-id="151">
+          <div class="child" data-id="151"
+            >ID rule 151: "#zwaar_float_ad_area"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness" id="admixer_">unblocked</div>
+        <div class="container" data-id="153">
+          <div class="child" data-id="153"
+            >ID rule 153: "#admixer_"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness" id="ad_gross">unblocked</div>
+        <div class="container" data-id="158">
+          <div class="child" data-id="158"
+            >ID rule 158: "#ad_gross"</div
+          >
+        </div>
+      </div>
+      
+      <div class="group">
+        <div class="witness" id="kaprila_linktable">unblocked</div>
+        <div class="container" data-id="178">
+          <div class="child" data-id="178"
+            >ID rule 178: "#kaprila_linktable"</div
+          >
+        </div>
+      </div>
+       
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://quickdomainfwd.com/favicin.ico"
+            alt="Test 7"
+            data-id="7"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="7">
+          <div class="child" data-id="7"
+            >Image rule 7</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://ratexchange.net/favicin.ico"
+            alt="Test 8"
+            data-id="8"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="8">
+          <div class="child" data-id="8"
+            >Image rule 8</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://webtracking.fe.union-investment.de/favicin.ico"
+            alt="Test 12"
+            data-id="12"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="12">
+          <div class="child" data-id="12"
+            >Image rule 12</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://purebushesprop.com/favicin.ico"
+            alt="Test 16"
+            data-id="16"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="16">
+          <div class="child" data-id="16"
+            >Image rule 16</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://javhub.net/img/r18_banner1.jpg"
+            alt="Test 17"
+            data-id="17"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="17">
+          <div class="child" data-id="17"
+            >Image rule 17</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://vungle.com/favicin.ico"
+            alt="Test 21"
+            data-id="21"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="21">
+          <div class="child" data-id="21"
+            >Image rule 21</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://d15cjcet1djbmv.cloudfront.net/favicin.ico"
+            alt="Test 22"
+            data-id="22"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="22">
+          <div class="child" data-id="22"
+            >Image rule 22</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://smartadserver.com/favicin.ico"
+            alt="Test 53"
+            data-id="53"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="53">
+          <div class="child" data-id="53"
+            >Image rule 53</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://adfox.ru/favicin.ico"
+            alt="Test 79"
+            data-id="79"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="79">
+          <div class="child" data-id="79"
+            >Image rule 79</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://active-tracking.de/favicin.ico"
+            alt="Test 80"
+            data-id="80"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="80">
+          <div class="child" data-id="80"
+            >Image rule 80</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://pabidding.io/favicin.ico"
+            alt="Test 85"
+            data-id="85"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="85">
+          <div class="child" data-id="85"
+            >Image rule 85</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="http://addthis.com/favicin.ico"
+            alt="Test 86"
+            data-id="86"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="86">
+          <div class="child" data-id="86"
+            >Image rule 86</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="http://accengage.net/favicin.ico"
+            alt="Test 88"
+            data-id="88"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="88">
+          <div class="child" data-id="88"
+            >Image rule 88</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://adskom.com/favicin.ico"
+            alt="Test 92"
+            data-id="92"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="92">
+          <div class="child" data-id="92"
+            >Image rule 92</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://erate.co.il/favicin.ico"
+            alt="Test 94"
+            data-id="94"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="94">
+          <div class="child" data-id="94"
+            >Image rule 94</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://mas.nth.ch/favicin.ico"
+            alt="Test 97"
+            data-id="97"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="97">
+          <div class="child" data-id="97"
+            >Image rule 97</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="http://fumblingform.com/favicin.ico"
+            alt="Test 100"
+            data-id="100"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="100">
+          <div class="child" data-id="100"
+            >Image rule 100</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://mycookies.it/favicin.ico"
+            alt="Test 107"
+            data-id="107"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="107">
+          <div class="child" data-id="107"
+            >Image rule 107</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://button-follow.zalo.me/favicin.ico"
+            alt="Test 109"
+            data-id="109"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="109">
+          <div class="child" data-id="109"
+            >Image rule 109</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://addtoany.com/favicin.ico"
+            alt="Test 117"
+            data-id="117"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="117">
+          <div class="child" data-id="117"
+            >Image rule 117</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="http://patrospermit.com/favicin.ico"
+            alt="Test 122"
+            data-id="122"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="122">
+          <div class="child" data-id="122"
+            >Image rule 122</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://yanmaga.jp/api/customers/viewer_banners/favicin.ico"
+            alt="Test 125"
+            data-id="125"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="125">
+          <div class="child" data-id="125"
+            >Image rule 125</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://holyclock.com/favicin.ico"
+            alt="Test 128"
+            data-id="128"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="128">
+          <div class="child" data-id="128"
+            >Image rule 128</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://postquare.com/favicin.ico"
+            alt="Test 137"
+            data-id="137"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="137">
+          <div class="child" data-id="137"
+            >Image rule 137</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://checke.biz/favicin.ico"
+            alt="Test 144"
+            data-id="144"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="144">
+          <div class="child" data-id="144"
+            >Image rule 144</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://zhengliyqq.com/favicin.ico"
+            alt="Test 155"
+            data-id="155"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="155">
+          <div class="child" data-id="155"
+            >Image rule 155</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://amidicestrins.com/favicin.ico"
+            alt="Test 156"
+            data-id="156"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="156">
+          <div class="child" data-id="156"
+            >Image rule 156</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://sda.online-systemy.cz/favicin.ico"
+            alt="Test 157"
+            data-id="157"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="157">
+          <div class="child" data-id="157"
+            >Image rule 157</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://gbucket.ch/favicin.ico"
+            alt="Test 160"
+            data-id="160"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="160">
+          <div class="child" data-id="160"
+            >Image rule 160</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://axiabanners.exodus.gr/favicin.ico"
+            alt="Test 168"
+            data-id="168"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="168">
+          <div class="child" data-id="168"
+            >Image rule 168</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://hr/Portal/Banner?ex=2"
+            alt="Test 170"
+            data-id="170"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="170">
+          <div class="child" data-id="170"
+            >Image rule 170</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://komashisha.com/files/Katib_Media.png"
+            alt="Test 177"
+            data-id="177"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="177">
+          <div class="child" data-id="177"
+            >Image rule 177</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://widget.getyourguide.com/favicin.ico"
+            alt="Test 184"
+            data-id="184"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="184">
+          <div class="child" data-id="184"
+            >Image rule 184</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://sure.lv/favicin.ico"
+            alt="Test 189"
+            data-id="189"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="189">
+          <div class="child" data-id="189"
+            >Image rule 189</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://a.kajgana.mk/favicin.ico"
+            alt="Test 191"
+            data-id="191"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="191">
+          <div class="child" data-id="191"
+            >Image rule 191</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://content2.kieskeurig.nl/favicin.ico"
+            alt="Test 192"
+            data-id="192"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="192">
+          <div class="child" data-id="192"
+            >Image rule 192</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://kunde.apt.no/favicin.ico"
+            alt="Test 193"
+            data-id="193"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="193">
+          <div class="child" data-id="193"
+            >Image rule 193</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://newsbucuresti.ro/1romedica.jpg"
+            alt="Test 199"
+            data-id="199"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="199">
+          <div class="child" data-id="199"
+            >Image rule 199</div
+          >
+        </div>
+      </div>
+      
+
+      <div class="group">
+        <div class="witness witness-img">
+          <img
+            src="https://reklam1.akhisar.bel.tr/favicin.ico"
+            alt="Test 210"
+            data-id="210"
+            width="100px"
+            height="10px"
+            cross-origin="anonymous"
+          />
+        </div>
+        <div class="container" data-id="210">
+          <div class="child" data-id="210"
+            >Image rule 210</div
+          >
+        </div>
+      </div>
+       
+    </div>
+
+    
+
+    <script>
+      // for demonstration purposes, to show the fingerprint
+
+      (async () => {
+        setInterval(() => {
+          fetch("/demo-fingerprint.json")
+            .then((response) => response.json())
+            .then((data) => {
+              // make a table
+              const table = document.createElement("table");
+              const tbody = document.createElement("tbody");
+              table.appendChild(tbody);
+
+              for (const [key, value] of Object.entries(data)) {
+                const row = document.createElement("tr");
+                const keyCell = document.createElement("td");
+                const valueCell = document.createElement("td");
+
+                keyCell.textContent = key;
+                valueCell.textContent = value;
+
+                row.appendChild(keyCell);
+                row.appendChild(valueCell);
+
+                tbody.appendChild(row);
+              }
+
+              document.getElementById("raw-output").innerHTML = "";
+              document.getElementById("raw-output").appendChild(table);
+            });
+        }, 1000);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/common.css" />
+    <title>Filter-lists Fingerprinting Demo</title>
+    <style>
+      nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav a {
+        padding: 1rem;
+        background-color: #f0f0f0;
+        border-radius: 0.5rem;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+        border: solid 2px rgb(175, 175, 175);
+      }
+
+      nav a:hover {
+        background-color: #e0e0e0;
+      }
+
+      nav h3 {
+        text-align: center;
+      }
+
+      .best-attack {
+        border: solid 2px rgb(182, 155, 0);
+        background-color: #ffe4a6;
+      }
+
+      section{
+        margin-bottom: 10rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center">Filter-lists Fingerprinting Demo</h1>
+
+    <section>
+      <p style="text-align: center">
+        This is a demo page to test the filter-lists fingerprinting
+        technique.</p
+      >
+
+      <i class="callout">DISCLAIMER: The attacks by themselves are scriptless. All scripts in this demo are for visualization purposes or to simulate attacker servers through service-workers.</i>
+
+      <h1 style="text-align: center">Instructions</h1>
+      <p>
+      Because we are hosting this site on GitHub pages, ad blockers will not trigger any cosmetic rule, as GitHub is flagged as a trusted site by default. This will not be the case for arbitrary websites where the attack will be hosted.
+
+      To enable cosmetic rules on GitHub temporarily, you need to follow the instructions below:
+      <br>
+      <br>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+      <span>
+      <b>For uBlock Origin</b>
+      <ol>
+        <li>Click on the uBlock Origin icon in the browser toolbar. (you could need to click on the web-extensions icon first)</li>
+        <li>Click on the settings icon.</li>
+        <li>When the settings page opens, go to "My Filters"</li>
+        <li>Add the following rule: <pre>@@||github.io^$generichide,badfilter</pre></li>
+        <li>Click on "Apply changes" button</li>
+        <li>Refresh the demo page</li>
+      </ol>
+      </span>
+
+      <span>
+      <b>For AdGuard</b>
+      <ol>
+        <li>Click on the AdGuard icon in the browser toolbar. (you could need to click on the web-extensions icon first)</li>
+        <li>Click on the settings icon.</li>
+        <li>When the settings page opens, go to "User rules"</li>
+        <li>Add the following rule: <pre>@@||github.io^$generichide,badfilter</pre></li>
+        <li>Click on "Save" button</li>
+        <li>Refresh the demo page</li>
+      </ol>
+      </span>
+
+      </div>
+      <br>
+
+      <i class="callout">Remember to remove this rule after finishing with this demo.</i>
+
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+      <nav>
+        <h3>AdGuard</h3>
+        <a href="attacks/css-animation-adguard/" class="best-attack">&#9733; CSS Animation Attack</a>
+        <hr style="border: solid 1px rgb(218, 218, 218); width: 100%;"/>
+        <a href="attacks/container-query-adguard/"><pre>@container</pre> Query Attack</a>
+        <a href="attacks/lazy-loading-adguard/">Lazy Image Loading Attack</a>
+      </nav>
+      <nav>
+        <h3>uBlock Origin</h3>
+        <a href="attacks/css-animation-ublock/" class="best-attack">&#9733; CSS Animation Attack</a>
+        <hr style="border: solid 1px rgb(218, 218, 218); width: 100%;"/> 
+        <a href="attacks/container-query-ublock/"><pre>@container</pre> Query Attack</a>
+        <a href="attacks/lazy-loading-adguard/">Lazy Image Loading Attack</a>
+      </nav>
+      </div>
+    </section>
+    <footer>
+      Anonymous. to be filled with author information after the paper is
+      reviewed.
+    </footer>
+  </body>
+</html>

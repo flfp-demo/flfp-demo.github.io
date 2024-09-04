@@ -1,0 +1,110 @@
+section {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.info {
+  text-align: center;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  background-color: black;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+body.stealthy #detectors,
+body.stealthy #reset-box {
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+pre {
+  background-color: #f9f9f9;
+  padding: 2px 8px;
+  border: 1px solid #ddd;
+  font-family: monospace;
+  display: inline-block;
+  margin: 0;
+  align-self: baseline;
+  align-content: baseline;
+  vertical-align: baseline;
+}
+
+.callout {
+  background: rgb(255, 243, 223);
+  color: rgb(255, 157, 0);
+  border: 1px solid rgb(255, 157, 0);
+  padding: 1rem;
+  width: 100%;
+  display: block;
+  font-weight: bold;
+}
+
+.hide-always {
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+body:not(.stealthy) .only-stealthy {
+  display: none;
+}
+
+body.stealthy .only-visible {
+  display: none;
+}
+
+#output-box {
+  background-color: lightgray;
+  padding: 1rem;
+  border: 2px dashed black;
+}
+
+td {
+  padding: 0.5rem;
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: #666;
+  position: fixed;
+  z-index: 20;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #f9f9f9;
+}

@@ -1,0 +1,180 @@
+<html>
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="expires" content="-1" />
+    <link rel="stylesheet" href="/static/common.css" />
+    <title>Image alt attack (adguard)</title>
+    <style>
+              :root {
+              }
+
+              
+
+              img::before {
+                content: "";
+        font-family: var(--font-family-mono);
+        color: var(--color-text);
+        border: .25em dotted red;
+        background: yellow;
+        padding: .25em;
+      }
+
+              #detectors img {
+                width: 100px;
+                height: 100px;
+                display: block;
+              }
+    </style>
+  </head>
+  <body>
+    <a href="/" style="text-align: center; display: block; width: 100vw"
+      >Back to All Attacks</a
+    >
+    <h2 style="text-align: center">Image Alt Attack (adguard)</h2>
+    <h3 class="info only-stealthy" style="background: red">Stealth Mode</h3>
+    <h3 class="info only-visible" style="background: green">Visible Mode</h3>
+    <section>
+      <main id="output-box">
+        <h1>Your Fingerprint Output</h1>
+        <p id="raw-output">Collecting...</p>
+      </main>
+
+      <p>
+        This page is designed to test the image alt attribute attack. The attack
+        sends signals on page load as part of the background image URL of
+        unblocked requests.
+      </p>
+
+      <p>
+        
+        <b>For Adguard:</b> Adguard will trigger the alt backgrounds if the
+        element is not blocked and the image doesn't load. So, we point the URL
+        to a non-existing image. This way, the alt attribute is triggered if the
+        URL is not blocked. The signals the server receives are the unblocked
+        requests, so the adversary must reverse the fingerprint.
+      </p>
+      
+
+      <h2>Attack Pros</h2>
+      <ol>
+        <li
+          >This attack does not require any script. All scripts present in this
+          demo are strictly to help visualize the attack: One script connects a
+          service worker to act like the adversary server, and other scripts
+          helps with visualizing the attack parameters for the viewer.</li
+        >
+        <li
+          >This attack can be stealthy. At this moment, even while not trying to
+          hide the images, many images we load are originally single pixels and
+          don't show up. Click this button to hide/show the attack boxes:
+          <button onclick="document.body.classList.toggle('stealthy')"
+            >Toggle Stealth</button
+          >
+          We make the attack boxes invisible by lowering the opacity and
+          allowing no events to pass through. This way, the attack can be hidden
+          from the user.</li
+        >
+        <li><b>The attack works even if JavaScript is disabled.</b></li>
+      </ol>
+
+      <h2>Attack Cons</h2>
+      <ol>
+        <li>The attack is restricted to generic network rules.</li>
+        <li
+          >The fattack does not work on chromium because of non-standard ways of
+          styling the alt attribute.</li
+        >
+      </ol>
+    </section>
+
+    <script type="text/javascript">
+      // register the server-like service worker
+
+      if ("serviceWorker" in navigator) {
+        const wasInstalled = navigator.serviceWorker.controller !== null;
+
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(function (registration) {
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope
+            );
+
+            if (!wasInstalled) {
+              //reload
+              window.location.reload();
+            }
+          })
+          .catch(function (err) {
+            console.log("Service Worker registration failed:", err);
+          });
+      } else {
+        alert("Service workers are not supported in this browser.");
+      }
+    </script>
+
+    <div id="detectors">
+      <img src="/image-alt-reset?adblocker=adguard" />
+
+      
+
+      <style>
+      img::before {
+  font-family: var(--font-family-mono);
+  color: var(--color-text);
+  border: .25em dotted red;
+  background: yellow;
+  padding: .25em;
+}
+      </style>
+      <img
+        alt="This is an example of a missing image."
+        decoding="async"
+        fetchpriority="high"
+        height="200"
+        src="https://example.com/nothing.jpg"
+        width="400"
+      />
+    </div>
+
+    
+
+    <script>
+      // for demonstration purposes, to show the fingerprint
+
+      (async () => {
+        setInterval(() => {
+          fetch("/image-alt-fingerprint.json")
+            .then((response) => response.json())
+            .then((data) => {
+              // make a table
+              const table = document.createElement("table");
+              const tbody = document.createElement("tbody");
+              table.appendChild(tbody);
+
+              for (const [key, value] of Object.entries(data)) {
+                const row = document.createElement("tr");
+                const keyCell = document.createElement("td");
+                const valueCell = document.createElement("td");
+
+                keyCell.textContent = key;
+                valueCell.textContent = value;
+
+                row.appendChild(keyCell);
+                row.appendChild(valueCell);
+
+                tbody.appendChild(row);
+              }
+
+              document.getElementById("raw-output").innerHTML = "";
+              document.getElementById("raw-output").appendChild(table);
+            });
+        }, 1000);
+      })();
+    </script>
+  </body>
+</html>

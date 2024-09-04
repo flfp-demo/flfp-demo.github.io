@@ -1,0 +1,551 @@
+{
+    "image-alt": {
+        "generic-network": [
+            {
+                "id": 0,
+                "url": "https://www.jeeng.com/wp-content/uploads/2022/04/Jeeng_w_OW.png",
+                "resource": "image",
+                "info": {
+                    "ublock-filters": true
+                }
+            },
+            {
+                "id": 6,
+                "url": "https://audacity.fr/wp-content/uploads/cropped-favicon-audacity-32x32.png",
+                "resource": "image",
+                "info": {
+                    "ublock-badware": true
+                }
+            },
+            {
+                "id": 7,
+                "url": "https://gamedock.io/img/gamedock-logo-medium.png",
+                "resource": "image",
+                "info": {
+                    "ublock-privacy": true
+                }
+            }
+        ]
+    },
+    "container-query": {
+        "generic-cosmetic": []
+    },
+    "lazy-image-and-animation": {
+        "generic-network": [
+            {
+                "id": 7,
+                "url": "https://quickdomainfwd.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "ublock-badware": true
+                }
+            },
+            {
+                "id": 8,
+                "url": "https://ratexchange.net/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "ublock-privacy": true
+                }
+            },
+            {
+                "id": 12,
+                "url": "https://webtracking.fe.union-investment.de/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "ublock-unbreak": true
+                }
+            },
+            {
+                "id": 16,
+                "url": "https://purebushesprop.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "FRA-0": true,
+                    "adguard-generic": true
+                }
+            },
+            {
+                "id": 17,
+                "url": "https://javhub.net/img/r18_banner1.jpg",
+                "resource": "image",
+                "info": {
+                    "CHN-0": true,
+                    "adguard-generic": true
+                }
+            },
+            {
+                "id": 21,
+                "url": "https://vungle.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "adguard-generic": true,
+                    "adguard-mobile": true,
+                    "plowe-0": true
+                }
+            },
+            {
+                "id": 22,
+                "url": "https://d15cjcet1djbmv.cloudfront.net/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "adguard-generic": true,
+                    "FRA-0": true,
+                    "CHN-0": true
+                }
+            },
+            {
+                "id": 53,
+                "url": "https://smartadserver.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easylist": true,
+                    "GRC-0": true,
+                    "HUN-0": true,
+                    "MKD-0": true,
+                    "POL-0": true,
+                    "plowe-0": true,
+                    "ublock-unbreak": true
+                }
+            },
+            {
+                "id": 79,
+                "url": "https://adfox.ru/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easyprivacy": true,
+                    "RUS-0": true,
+                    "HUN-0": true
+                }
+            },
+            {
+                "id": 80,
+                "url": "https://active-tracking.de/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easyprivacy": true,
+                    "DEU-0": true
+                }
+            },
+            {
+                "id": 85,
+                "url": "https://pabidding.io/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easyprivacy": true,
+                    "ara-0": true
+                }
+            },
+            {
+                "id": 86,
+                "url": "http://addthis.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easyprivacy": true,
+                    "fanboy-social": true,
+                    "POL-0": true
+                }
+            },
+            {
+                "id": 88,
+                "url": "http://accengage.net/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easyprivacy": true,
+                    "easylist-notifications": true,
+                    "adguard-popup-overlays": true
+                }
+            },
+            {
+                "id": 92,
+                "url": "https://adskom.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easyprivacy": true,
+                    "IDN-0": true
+                }
+            },
+            {
+                "id": 94,
+                "url": "https://erate.co.il/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easyprivacy": true,
+                    "ISR-0": true,
+                    "ara-0": true,
+                    "RUS-0": true
+                }
+            },
+            {
+                "id": 97,
+                "url": "https://mas.nth.ch/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easyprivacy": true,
+                    "MKD-0": true
+                }
+            },
+            {
+                "id": 100,
+                "url": "http://fumblingform.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "adguard-popup-overlays": true,
+                    "adguard-cookies": true
+                }
+            },
+            {
+                "id": 107,
+                "url": "https://mycookies.it/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "fanboy-cookiemonster": true,
+                    "ITA-0": true
+                }
+            },
+            {
+                "id": 109,
+                "url": "https://button-follow.zalo.me/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "adguard-social": true
+                }
+            },
+            {
+                "id": 117,
+                "url": "https://addtoany.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "fanboy-social": true,
+                    "SWE-1": true
+                }
+            },
+            {
+                "id": 122,
+                "url": "http://patrospermit.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "adguard-popup-overlays": true,
+                    "FRA-0": true
+                }
+            },
+            {
+                "id": 125,
+                "url": "https://yanmaga.jp/api/customers/viewer_banners/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "adguard-other-annoyances": true
+                }
+            },
+            {
+                "id": 128,
+                "url": "https://holyclock.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "adguard-widgets": true,
+                    "FRA-0": true
+                }
+            },
+            {
+                "id": 137,
+                "url": "https://postquare.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easylist-annoyances": true,
+                    "ara-0": true
+                },
+                "ignore": [
+                    "lazy_loading"
+                ]
+            },
+            {
+                "id": 144,
+                "url": "https://checke.biz/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "easylist-notifications": true,
+                    "RUS-0": true
+                }
+            },
+            {
+                "id": 155,
+                "url": "https://zhengliyqq.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "CHN-0": true
+                }
+            },
+            {
+                "id": 156,
+                "url": "https://amidicestrins.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "FRA-0": true,
+                    "CHN-0": true
+                }
+            },
+            {
+                "id": 157,
+                "url": "https://sda.online-systemy.cz/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "CZE-0": true
+                }
+            },
+            {
+                "id": 160,
+                "url": "https://gbucket.ch/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "DEU-0": true,
+                    "ITA-0": true
+                }
+            },
+            {
+                "id": 168,
+                "url": "https://axiabanners.exodus.gr/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "GRC-0": true
+                }
+            },
+            {
+                "id": 170,
+                "url": "https://hr/Portal/Banner?ex=2",
+                "resource": "image",
+                "info": {
+                    "HRV-0": true
+                }
+            },
+            {
+                "id": 177,
+                "url": "https://komashisha.com/files/Katib_Media.png",
+                "resource": "image",
+                "info": {
+                    "IND-0": true
+                },
+                "ll_styles": "padding-bottom: 90px;"
+            },
+            {
+                "id": 184,
+                "url": "https://widget.getyourguide.com/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "ITA-0": true,
+                    "SWE-1": true,
+                    "adguard-widgets": true
+                }
+            },
+            {
+                "id": 189,
+                "url": "https://sure.lv/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "LVA-0": true
+                }
+            },
+            {
+                "id": 191,
+                "url": "https://a.kajgana.mk/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "MKD-0": true
+                }
+            },
+            {
+                "id": 192,
+                "url": "https://content2.kieskeurig.nl/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "NLD-0": true
+                }
+            },
+            {
+                "id": 193,
+                "url": "https://kunde.apt.no/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "NOR-0": true
+                }
+            },
+            {
+                "id": 199,
+                "url": "https://newsbucuresti.ro/1romedica.jpg",
+                "resource": "image",
+                "info": {
+                    "ROU-1": true
+                }
+            },
+            {
+                "id": 210,
+                "url": "https://reklam1.akhisar.bel.tr/favicin.ico",
+                "resource": "image",
+                "info": {
+                    "TUR-0": true
+                }
+            }
+        ],
+        "generic-cosmetic": [
+            {
+                "id": 0,
+                "by": "class",
+                "class": "aff-inner-col",
+                "info": {
+                    "ublock-filters": true
+                }
+            },
+            {
+                "id": 101,
+                "by": "id",
+                "_id": "bann-cook",
+                "info": {
+                    "fanboy-cookiemonster": true
+                }
+            },
+            {
+                "id": 102,
+                "by": "id",
+                "_id": "eu-cookies-consent",
+                "info": {
+                    "fanboy-cookiemonster": true,
+                    "SVN-0": true
+                }
+            },
+            {
+                "id": 111,
+                "by": "class",
+                "class": "shareaholic-canvas",
+                "info": {
+                    "adguard-social": true,
+                    "FRA-0": true
+                }
+            },
+            {
+                "id": 116,
+                "by": "class",
+                "class": "util-bar-module-firefly-visible",
+                "info": {
+                    "fanboy-social": true,
+                    "fanboy-thirdparty_social": true
+                }
+            },
+            {
+                "id": 129,
+                "by": "class",
+                "class": "ck-sp-app-wrapper",
+                "info": {
+                    "easylist-annoyances": true
+                }
+            },
+            {
+                "id": 131,
+                "by": "id",
+                "_id": "onesignal-bell-container",
+                "info": {
+                    "easylist-annoyances": true,
+                    "RUS-0": true
+                }
+            },
+            {
+                "id": 133,
+                "by": "class",
+                "class": "td-more-articles-box",
+                "info": {
+                    "easylist-annoyances": true,
+                    "ALB-0": true
+                }
+            },
+            {
+                "id": 142,
+                "by": "id",
+                "_id": "SubscribePushNotificationPanel",
+                "info": {
+                    "easylist-newsletters": true,
+                    "easylist-notifications": true
+                }
+            },
+            {
+                "id": 146,
+                "by": "class",
+                "class": "adblock-whitelist-messaging__wrapper",
+                "info": {
+                    "ublock-annoyances": true
+                }
+            },
+            {
+                "id": 151,
+                "by": "id",
+                "_id": "zwaar_float_ad_area",
+                "info": {
+                    "ara-0": true
+                }
+            },
+            {
+                "id": 153,
+                "by": "id",
+                "_id": "admixer_",
+                "info": {
+                    "ara-0": true,
+                    "RUS-0": true
+                }
+            },
+            {
+                "id": 158,
+                "by": "id",
+                "_id": "ad_gross",
+                "info": {
+                    "DEU-0": true
+                }
+            },
+            {
+                "id": 173,
+                "by": "class",
+                "class": "frame_iklan_baris",
+                "info": {
+                    "IDN-0": true
+                }
+            },
+            {
+                "id": 178,
+                "by": "id",
+                "_id": "kaprila_linktable",
+                "info": {
+                    "IRN-0": true
+                }
+            },
+            {
+                "id": 182,
+                "by": "class",
+                "class": "boxAdv",
+                "info": {
+                    "ITA-0": true,
+                    "POL-0": true
+                }
+            },
+            {
+                "id": 186,
+                "by": "class",
+                "class": "reklamos_nuorodos",
+                "info": {
+                    "LTU-0": true
+                }
+            },
+            {
+                "id": 204,
+                "by": "class",
+                "class": "PublicidadArriba",
+                "info": {
+                    "spa-0": true
+                }
+            },
+            {
+                "id": 208,
+                "by": "class",
+                "class": "strossle-below-article-thumbnails",
+                "info": {
+                    "SWE-1": true
+                }
+            }
+        ]
+    }
+}
